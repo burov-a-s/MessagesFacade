@@ -1,6 +1,4 @@
-package ru.iflex.burov.Converter;
-
-import ru.iflex.burov.entity.Message;
+package ru.iflex.burov.converter;
 
 import javax.ejb.Stateless;
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -55,18 +53,11 @@ public class MessageConverter {
 
     public List<ru.iflex.burov.facade.Message> convertEntityMessagesToFacadeMessages(List<ru.iflex.burov.entity.Message> messagesIn) {
         if (messagesIn != null) {
-            System.out.println(messagesIn);
-            System.out.println("--------------------------------------------------------------------------------------");
-            System.out.println("MessageConverter строка 60");
             List<ru.iflex.burov.facade.Message> messagesOut = new ArrayList<>();
-            System.out.println("--------------------------------------------------------------------------------------");
-            System.out.println("MessageConverter строка 63");
             for (ru.iflex.burov.entity.Message message : messagesIn) {
                 ru.iflex.burov.facade.Message newMessage = convertEntityMessageToFacadeMessage(message);
                 messagesOut.add(newMessage);
             }
-            System.out.println("--------------------------------------------------------------------------------------");
-            System.out.println("MessageConverter строка 68");
             return messagesOut;
         } else {
             return null;
@@ -129,18 +120,10 @@ public class MessageConverter {
 
     public ru.iflex.burov.facade.Message convertEntityMessageToFacadeMessage(ru.iflex.burov.entity.Message messageIn) {
         ru.iflex.burov.facade.Message messageOut = new ru.iflex.burov.facade.Message();
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("MessageConverter строка 132");
         try {
             messageOut.setId(messageIn.getId());
-            System.out.println("--------------------------------------------------------------------------------------");
-            System.out.println("MessageConverter строка 136");
             messageOut.setSender(messageIn.getSender());
-            System.out.println("--------------------------------------------------------------------------------------");
-            System.out.println("MessageConverter строка 139");
             Calendar calendarIn = messageIn.getSend_time();
-            System.out.println("--------------------------------------------------------------------------------------");
-            System.out.println("MessageConverter строка 142");
             XMLGregorianCalendar xmlGregorianCalendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendarIn.get(Calendar.YEAR),
                     calendarIn.get(Calendar.MONTH),
                     calendarIn.get(Calendar.DAY_OF_MONTH),
@@ -149,19 +132,11 @@ public class MessageConverter {
                     calendarIn.get(Calendar.SECOND),
                     calendarIn.get(Calendar.MILLISECOND),
                     calendarIn.getTimeZone().getDSTSavings());
-            System.out.println("--------------------------------------------------------------------------------------");
-            System.out.println("MessageConverter строка 152");
             messageOut.setSendTime(xmlGregorianCalendar);
-            System.out.println("--------------------------------------------------------------------------------------");
-            System.out.println("MessageConverter строка 155");
             messageOut.setContent(messageIn.getContent());
-            System.out.println("--------------------------------------------------------------------------------------");
-            System.out.println("MessageConverter строка 158");
         } catch (DatatypeConfigurationException e) {
             e.printStackTrace();
         }
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("MessageConverter строка 163");
         return messageOut;
     }
 

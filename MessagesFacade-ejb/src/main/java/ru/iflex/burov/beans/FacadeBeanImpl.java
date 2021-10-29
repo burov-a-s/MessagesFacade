@@ -1,10 +1,10 @@
 package ru.iflex.burov.beans;
 
-import ru.iflex.burov.Converter.MessageConverter;
+import ru.iflex.burov.converter.MessageConverter;
 import ru.iflex.burov.entity.Message;
 import ru.iflex.burov.lib.FacadeBean;
 import ru.iflex.burov.lib.MyRestClient;
-import ru.iflex.burov.soapClient.MySoapClient;
+import ru.iflex.burov.soap.client.MySoapClient;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -47,8 +47,6 @@ public class FacadeBeanImpl implements FacadeBean {
 
     @Override
     public List<Message> getAllMessages() {
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("FacadeBeanImpl строка 51");
         return myRestClient.getAllMessages();
     }
 }

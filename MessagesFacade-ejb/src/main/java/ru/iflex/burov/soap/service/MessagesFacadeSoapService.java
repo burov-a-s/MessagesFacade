@@ -1,16 +1,15 @@
-package ru.iflex.burov.soapService;
+package ru.iflex.burov.soap.service;
 
-import ru.iflex.burov.Converter.MessageConverter;
+import ru.iflex.burov.converter.MessageConverter;
 import ru.iflex.burov.entity.Message;
-import ru.iflex.burov.lib.FacadeBean;
 import ru.iflex.burov.facade.*;
 import ru.iflex.burov.facade.ws.MessagesFacadePortType;
+import ru.iflex.burov.lib.FacadeBean;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 import javax.xml.datatype.XMLGregorianCalendar;
-import java.util.Calendar;
 import java.util.List;
 
 @WebService(serviceName = "MessagesFacadeService",
@@ -54,23 +53,9 @@ public class MessagesFacadeSoapService implements MessagesFacadePortType {
 
     @Override
     public GetMessageResponse getAllMessages(GetAllMessagesRequest request) {
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("MessagesFacadeSoapService строка 58");
         List<Message> messages = facadeBean.getAllMessages();
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("MessagesFacadeSoapService строка 61");
         GetMessageResponse response = new GetMessageResponse();
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("MessagesFacadeSoapService строка 64");
-        List<ru.iflex.burov.facade.Message> messageList = converter.convertEntityMessagesToFacadeMessages(messages);
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("MessagesFacadeSoapService строка 67");
-        List<ru.iflex.burov.facade.Message> entityMessages = response.getMessages();
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("MessagesFacadeSoapService строка 70");
-        entityMessages.addAll(messageList);
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("MessagesFacadeSoapService строка 73");
+        response.getMessages().addAll(converter.convertEntityMessagesToFacadeMessages(messages));
         return response;
     }
 

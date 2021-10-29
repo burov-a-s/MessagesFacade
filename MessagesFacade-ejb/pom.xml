@@ -15,6 +15,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.sun.xml.ws</groupId>
+      <artifactId>jaxws-rt</artifactId>
+      <version>3.0.2</version>
+    </dependency>
+    <dependency>
       <groupId>ru.iflex.burov</groupId>
       <artifactId>MessagesFacade-lib</artifactId>
       <version>${project.version}</version>
@@ -24,13 +29,6 @@
       <groupId>javax</groupId>
       <artifactId>javaee-web-api</artifactId>
       <version>6.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>ru.iflex.burov</groupId>
-      <artifactId>MessagesFacade-war</artifactId>
-      <version>${project.version}</version>
-      <type>war</type>
       <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -135,6 +133,36 @@
           <extension>true</extension>
           <catalog>${basedir}/src/jax-ws-catalog.xml</catalog>
           <target>2.0</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.jvnet.jaxb2.maven2</groupId>
+        <artifactId>maven-jaxb2-plugin</artifactId>
+        <version>0.12.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <schemaIncludes>
+                <include>jaxb/*.xsd</include>
+              </schemaIncludes>
+              <episodeFile>
+                ${project.build.directory}/generated-sources/xjc/META-INF/jaxb-MessagesFacadeBinding.episode
+              </episodeFile>
+              <generatePackage>MessagesFacadeBinding</generatePackage>
+            </configuration>
+            <id>jaxb-generate-MessagesFacadeBinding</id>
+          </execution>
+        </executions>
+        <configuration>
+          <catalog>src/main/resources/jaxb/catalog.xml</catalog>
+          <catalogResolver>org.jvnet.jaxb2.maven2.resolver.tools.ClasspathCatalogResolver</catalogResolver>
+          <forceRegenerate>true</forceRegenerate>
+          <generateDirectory>${project.build.directory}/generated-sources/xjc</generateDirectory>
+          <verbose>true</verbose>
         </configuration>
       </plugin>
     </plugins>

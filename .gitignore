@@ -1,0 +1,5 @@
+# Project exclude paths
+/MessagesFacade-ear/target/
+/MessagesFacade-ejb/target/
+/MessagesFacade-lib/target/
+/MessagesFacade-war/target/
