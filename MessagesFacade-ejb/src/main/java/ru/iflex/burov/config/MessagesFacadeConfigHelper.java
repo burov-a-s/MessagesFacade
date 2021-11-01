@@ -7,24 +7,24 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
-public class MyConfigHelper {
+public class MessagesFacadeConfigHelper {
     private String fileName = System.getProperty("user.dir").
             concat(File.separator).
             concat("appConfig").
             concat(File.separator).
             concat("MessagesFacade.xml");
-    private static MyConfigHelper instance = new MyConfigHelper();
+    private static MessagesFacadeConfigHelper instance = new MessagesFacadeConfigHelper();
 
     private static MessagesFacadeConfiguration messagesFacadeConfiguration;
 
-    private MyConfigHelper() {
+    private MessagesFacadeConfigHelper() {
     }
 
-    public static MyConfigHelper getInstance() {
+    public static MessagesFacadeConfigHelper getInstance() {
         if (instance == null) {
-            synchronized (MyConfigHelper.class) {
+            synchronized (MessagesFacadeConfigHelper.class) {
                 if (instance == null) {
-                    instance = new MyConfigHelper();
+                    instance = new MessagesFacadeConfigHelper();
                 }
             }
         }
@@ -33,7 +33,7 @@ public class MyConfigHelper {
 
     public MessagesFacadeConfiguration getConfigurations() {
         if (messagesFacadeConfiguration == null) {
-            synchronized (MyConfigHelper.class) {
+            synchronized (MessagesFacadeConfigHelper.class) {
                 if (messagesFacadeConfiguration == null) {
                     messagesFacadeConfiguration = new MessagesFacadeConfiguration();
                     File file = new File(fileName);

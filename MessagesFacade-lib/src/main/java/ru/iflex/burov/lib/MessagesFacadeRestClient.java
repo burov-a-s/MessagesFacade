@@ -4,7 +4,7 @@ import ru.iflex.burov.entity.Message;
 
 import java.util.List;
 
-public interface MyRestClient {
+public interface MessagesFacadeRestClient {
 
     public void addMessage(Message message);
 

@@ -13,9 +13,9 @@ public class MessageConverter {
 
     public List<ru.iflex.burov.facade.Message> convertManagerMessagesToFacadeMessages(List<ru.iflex.burov.messsage.Message> messagesIn) {
         if (messagesIn != null) {
-                List<ru.iflex.burov.facade.Message> messagesOut = new ArrayList<>();
-                messagesIn.forEach(message -> messagesOut.add(convertManagerMessageToFacadeMessage(message)));
-                return messagesOut;
+            List<ru.iflex.burov.facade.Message> messagesOut = new ArrayList<>();
+            messagesIn.forEach(message -> messagesOut.add(convertManagerMessageToFacadeMessage(message)));
+            return messagesOut;
         } else {
             return null;
         }
@@ -125,7 +125,7 @@ public class MessageConverter {
             messageOut.setSender(messageIn.getSender());
             Calendar calendarIn = messageIn.getSend_time();
             XMLGregorianCalendar xmlGregorianCalendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendarIn.get(Calendar.YEAR),
-                    calendarIn.get(Calendar.MONTH),
+                    calendarIn.get(Calendar.MONTH) + 1,
                     calendarIn.get(Calendar.DAY_OF_MONTH),
                     calendarIn.get(Calendar.HOUR),
                     calendarIn.get(Calendar.MINUTE),
@@ -147,7 +147,7 @@ public class MessageConverter {
             messageOut.setSender(messageIn.getSender());
             Calendar calendarIn = messageIn.getSend_time();
             XMLGregorianCalendar xmlGregorianCalendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendarIn.get(Calendar.YEAR),
-                    calendarIn.get(Calendar.MONTH),
+                    calendarIn.get(Calendar.MONTH) + 1,
                     calendarIn.get(Calendar.DAY_OF_MONTH),
                     calendarIn.get(Calendar.HOUR),
                     calendarIn.get(Calendar.MINUTE),

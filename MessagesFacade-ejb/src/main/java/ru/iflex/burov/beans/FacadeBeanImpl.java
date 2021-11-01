@@ -3,8 +3,8 @@ package ru.iflex.burov.beans;
 import ru.iflex.burov.converter.MessageConverter;
 import ru.iflex.burov.entity.Message;
 import ru.iflex.burov.lib.FacadeBean;
-import ru.iflex.burov.lib.MyRestClient;
-import ru.iflex.burov.soap.client.MySoapClient;
+import ru.iflex.burov.lib.MessagesFacadeRestClient;
+import ru.iflex.burov.soap.client.MessagesFacadeSoapClient;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -15,38 +15,38 @@ import java.util.List;
 public class FacadeBeanImpl implements FacadeBean {
 
     @EJB
-    MyRestClient myRestClient;
+    private MessagesFacadeRestClient messagesFacadeRestClient;
 
     @EJB
-    MySoapClient mySoapClient;
+    private MessagesFacadeSoapClient messagesFacadeSoapClient;
 
     @EJB
-    MessageConverter converter;
+    private MessageConverter converter;
 
     @Override
     public void addMessage(Message message) {
-        myRestClient.addMessage(message);
+        messagesFacadeRestClient.addMessage(message);
     }
 
     @Override
     public void removeMessage(int id) {
-        myRestClient.removeMessage(id);
+        messagesFacadeRestClient.removeMessage(id);
     }
 
     @Override
     public List<Message> getMessagesByDate(XMLGregorianCalendar calendar) {
-        List<ru.iflex.burov.messsage.Message> messages = mySoapClient.getMessageByDate(calendar).getMessages();
+        List<ru.iflex.burov.messsage.Message> messages = messagesFacadeSoapClient.getMessageByDate(calendar).getMessages();
         return converter.convertManagerMessagesToEntityMessages(messages);
     }
 
     @Override
     public List<Message> getMessagesBySender(String sender) {
-        List<ru.iflex.burov.messsage.Message> messages = mySoapClient.getMessageBySender(sender).getMessages();
+        List<ru.iflex.burov.messsage.Message> messages = messagesFacadeSoapClient.getMessageBySender(sender).getMessages();
         return converter.convertManagerMessagesToEntityMessages(messages);
     }
 
     @Override
     public List<Message> getAllMessages() {
-        return myRestClient.getAllMessages();
+        return messagesFacadeRestClient.getAllMessages();
     }
 }

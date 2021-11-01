@@ -1,6 +1,6 @@
 package ru.iflex.burov.soap.client;
 
-import ru.iflex.burov.config.MyConfigHelper;
+import ru.iflex.burov.config.MessagesFacadeConfigHelper;
 import ru.iflex.burov.messsage.GetMessageByDateRequest;
 import ru.iflex.burov.messsage.GetMessageBySenderRequest;
 import ru.iflex.burov.messsage.GetMessageResponse;
@@ -12,10 +12,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.BindingProvider;
 
 @Stateless
-public class MySoapClient {
-    private int connectTimeOut = MyConfigHelper.getInstance().getConfigurations().getConnectTimeOutSOAPClient();
-    private int readTimeOut = MyConfigHelper.getInstance().getConfigurations().getReadTimeOutSOAPClient();
-    private String address = MyConfigHelper.getInstance().getConfigurations().getMessageManagerSOAPServiceAddress();
+public class MessagesFacadeSoapClient {
+    private int connectTimeOut = MessagesFacadeConfigHelper.getInstance().getConfigurations().getMessageManagerSoapService().getConnectTimeOut();
+    private int readTimeOut = MessagesFacadeConfigHelper.getInstance().getConfigurations().getMessageManagerSoapService().getReadTimeOut();
+    private String address = MessagesFacadeConfigHelper.getInstance().getConfigurations().getMessageManagerSoapService().getEndpoint();
     private static final MessageManagerService service = new MessageManagerService();
     private static final MessageManagerPortType portType = service.getMessageManagerService();
 

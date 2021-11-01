@@ -2,9 +2,9 @@ package ru.iflex.burov.rest.client;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ru.iflex.burov.config.MessagesFacadeConfigHelper;
 import ru.iflex.burov.entity.Message;
-import ru.iflex.burov.lib.MyRestClient;
-import ru.iflex.burov.config.MyConfigHelper;
+import ru.iflex.burov.lib.MessagesFacadeRestClient;
 
 import javax.ejb.Stateless;
 import javax.ws.rs.client.*;
@@ -21,10 +21,10 @@ import java.util.concurrent.TimeUnit;
 
 
 @Stateless
-public class MyRestClientImpl implements MyRestClient {
-    private int connectTimeOut = MyConfigHelper.getInstance().getConfigurations().getConnectTimeOutRESTClient();
-    private int readTimeOut = MyConfigHelper.getInstance().getConfigurations().getReadTimeOutRESTClient();
-    private String address = MyConfigHelper.getInstance().getConfigurations().getMessageManagerRESTControllerAddress();
+public class MessagesFacadeRestClientImpl implements MessagesFacadeRestClient {
+    private int connectTimeOut = MessagesFacadeConfigHelper.getInstance().getConfigurations().getMessageManagerRestService().getConnectTimeOut();
+    private int readTimeOut = MessagesFacadeConfigHelper.getInstance().getConfigurations().getMessageManagerRestService().getReadTimeOut();
+    private String address = MessagesFacadeConfigHelper.getInstance().getConfigurations().getMessageManagerRestService().getEndpoint();
 
     @Override
     public void addMessage(Message message) {

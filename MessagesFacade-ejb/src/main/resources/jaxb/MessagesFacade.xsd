@@ -8,59 +8,50 @@
     <xs:element name="MessagesFacadeConfiguration">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="messageManagerRESTControllerAddress">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:pattern value="http://127.0.0.1:7001/.*"/>
-                        </xs:restriction>
-                    </xs:simpleType>
+                <xs:element name="MessageManagerSoapService">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="endpoint" type="xs:string"/>
+                            <xs:element name="connectTimeOut" type="xs:int"/>
+                            <xs:element name="readTimeOut" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:complexType>
                 </xs:element>
-
-                <xs:element name="messageManagerSOAPServiceAddress">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:pattern value="http://127.0.0.1:7001/.*"/>
-                        </xs:restriction>
-                    </xs:simpleType>
+                <xs:element name="MessageManagerRestService">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="endpoint" type="xs:string"/>
+                            <xs:element name="connectTimeOut" type="xs:int"/>
+                            <xs:element name="readTimeOut" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:complexType>
                 </xs:element>
-
-                <xs:element name="connectTimeOutRESTClient">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:integer">
-                            <xs:minInclusive value="0"/>
-                            <xs:maxInclusive value="30000"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-
-                <xs:element name="readTimeOutRESTClient">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:integer">
-                            <xs:minInclusive value="0"/>
-                            <xs:maxInclusive value="30000"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-
-                <xs:element name="connectTimeOutSOAPClient">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:integer">
-                            <xs:minInclusive value="0"/>
-                            <xs:maxInclusive value="30000"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-
-                <xs:element name="readTimeOutSOAPClient">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:integer">
-                            <xs:minInclusive value="0"/>
-                            <xs:maxInclusive value="30000"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <!--    <xs:element name="MessagesFacadeConfiguration" type="tns:MessagesFacadeConfiguration"/>-->
+    <!--        <xs:complexType name="MessagesFacadeConfiguration">-->
+    <!--            <xs:sequence>-->
+    <!--                <xs:element name="MessageManagerSoapService" type="tns:MessageManagerSoapService"/>-->
+    <!--                <xs:element name="MessageManagerRestService" type="tns:MessageManagerRestService"/>-->
+    <!--            </xs:sequence>-->
+    <!--        </xs:complexType>-->
+
+    <!--    <xs:complexType name="MessageManagerSoapService">-->
+    <!--        <xs:sequence>-->
+    <!--            <xs:element name="endpoint" type="xs:string"/>-->
+    <!--            <xs:element name="connectTimeOut" type="xs:int"/>-->
+    <!--            <xs:element name="readTimeOut" type="xs:int"/>-->
+    <!--        </xs:sequence>-->
+    <!--    </xs:complexType>-->
+
+    <!--    <xs:complexType name="MessageManagerRestService">-->
+    <!--        <xs:sequence>-->
+    <!--            <xs:element name="endpoint" type="xs:string"/>-->
+    <!--            <xs:element name="connectTimeOut" type="xs:int"/>-->
+    <!--            <xs:element name="readTimeOut" type="xs:int"/>-->
+    <!--        </xs:sequence>-->
+    <!--    </xs:complexType>-->
+
 </xs:schema>
