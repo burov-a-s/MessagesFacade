@@ -1,0 +1,17 @@
+<fac:MessagesFacadeConfiguration xmlns:fac="http://burov.iflex.ru/facadeConfig">
+  <fac:MessageManagerSoapService>
+    <fac:endpoint>http://127.0.0.1:7001/MySoapService/MessageManagerService</fac:endpoint>
+    <fac:connectTimeOut>30000</fac:connectTimeOut>
+    <fac:readTimeOut>30000</fac:readTimeOut>
+  </fac:MessageManagerSoapService>
+  <fac:MessageManagerRestService>
+    <fac:endpoint>http://127.0.0.1:7001/MessageManager-war/resources/RestController/messages</fac:endpoint>
+    <fac:connectTimeOut>30000</fac:connectTimeOut>
+    <fac:readTimeOut>30000</fac:readTimeOut>
+  </fac:MessageManagerRestService>
+  <fac:MessageManagerRCPService>
+    <fac:endpoint>http://127.0.0.1:7001/MessageManager-war/resources/RPCController/messages</fac:endpoint>
+    <fac:connectTimeOut>30000</fac:connectTimeOut>
+    <fac:readTimeOut>30000</fac:readTimeOut>
+  </fac:MessageManagerRCPService>
+</fac:MessagesFacadeConfiguration>

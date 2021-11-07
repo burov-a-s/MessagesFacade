@@ -26,6 +26,15 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
+                <xs:element name="MessageManagerRCPService">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="endpoint" type="xs:string"/>
+                            <xs:element name="connectTimeOut" type="xs:int"/>
+                            <xs:element name="readTimeOut" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

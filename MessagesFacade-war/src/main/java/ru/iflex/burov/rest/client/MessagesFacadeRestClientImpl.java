@@ -44,7 +44,9 @@ public class MessagesFacadeRestClientImpl implements MessagesFacadeRestClient {
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         } finally {
-            client.close();
+            if (client != null) {
+                client.close();
+            }
         }
     }
 
@@ -63,7 +65,9 @@ public class MessagesFacadeRestClientImpl implements MessagesFacadeRestClient {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         } finally {
-            client.close();
+            if (client != null) {
+                client.close();
+            }
         }
     }
 
@@ -78,6 +82,7 @@ public class MessagesFacadeRestClientImpl implements MessagesFacadeRestClient {
             URI uri = new URI(address);
             WebTarget target = client.target(uri);
             String jsonFromServer = target.request().get(String.class);
+
             StringReader reader = new StringReader(jsonFromServer);
             ObjectMapper mapper = new ObjectMapper();
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -87,6 +92,10 @@ public class MessagesFacadeRestClientImpl implements MessagesFacadeRestClient {
             return messages;
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
+        } finally {
+            if (client != null) {
+                client.close();
+            }
         }
         return null;
     }

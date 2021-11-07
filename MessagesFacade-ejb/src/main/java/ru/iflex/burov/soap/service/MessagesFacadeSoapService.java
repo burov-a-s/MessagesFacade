@@ -6,6 +6,9 @@ import ru.iflex.burov.facade.*;
 import ru.iflex.burov.facade.ws.MessagesFacadePortType;
 import ru.iflex.burov.lib.FacadeBean;
 
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
@@ -26,6 +29,7 @@ public class MessagesFacadeSoapService implements MessagesFacadePortType {
     private MessageConverter converter;
 
     @Override
+    @RolesAllowed("TestRole")
     public GetMessageResponse getMessageByDate(GetMessageByDateRequest request) {
         if (request.getDate() != null) {
             XMLGregorianCalendar calendar = request.getDate();
@@ -39,6 +43,7 @@ public class MessagesFacadeSoapService implements MessagesFacadePortType {
     }
 
     @Override
+    @RolesAllowed("TestRole")
     public GetMessageResponse getMessageBySender(GetMessageBySenderRequest request) {
         if (request.getSender() != null) {
             String sender = request.getSender();
@@ -52,6 +57,7 @@ public class MessagesFacadeSoapService implements MessagesFacadePortType {
     }
 
     @Override
+    @RolesAllowed("TestRole")
     public GetMessageResponse getAllMessages(GetAllMessagesRequest request) {
         List<Message> messages = facadeBean.getAllMessages();
         GetMessageResponse response = new GetMessageResponse();
@@ -60,6 +66,7 @@ public class MessagesFacadeSoapService implements MessagesFacadePortType {
     }
 
     @Override
+    @PermitAll
     public AddMessageResponse addMessage(AddMessageRequest request) {
         if (request.getMessage() != null) {
             Message message = converter.convertFacadeMessageToEntityMessage(request.getMessage());
@@ -72,6 +79,7 @@ public class MessagesFacadeSoapService implements MessagesFacadePortType {
     }
 
     @Override
+    @RolesAllowed("TestRole")
     public RemoveMessageResponse removeMessage(RemoveMessageRequest request) {
         facadeBean.removeMessage(request.getId());
         RemoveMessageResponse removeMessageResponse = new RemoveMessageResponse();
