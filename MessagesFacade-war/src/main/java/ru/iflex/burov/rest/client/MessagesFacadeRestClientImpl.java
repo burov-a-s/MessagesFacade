@@ -4,9 +4,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.iflex.burov.config.MessagesFacadeConfigHelper;
 import ru.iflex.burov.entity.Message;
+import ru.iflex.burov.interceptors.LoggerInterceptor;
 import ru.iflex.burov.lib.MessagesFacadeRestClient;
 
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
@@ -21,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 
 @Stateless
+@Interceptors(LoggerInterceptor.class)
 public class MessagesFacadeRestClientImpl implements MessagesFacadeRestClient {
     private int connectTimeOut = MessagesFacadeConfigHelper.getInstance().getConfigurations().getMessageManagerRestService().getConnectTimeOut();
     private int readTimeOut = MessagesFacadeConfigHelper.getInstance().getConfigurations().getMessageManagerRestService().getReadTimeOut();

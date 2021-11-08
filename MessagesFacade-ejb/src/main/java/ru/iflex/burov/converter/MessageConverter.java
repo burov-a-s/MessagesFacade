@@ -1,6 +1,9 @@
 package ru.iflex.burov.converter;
 
+import ru.iflex.burov.interceptors.LoggerInterceptor;
+
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -9,6 +12,7 @@ import java.util.Calendar;
 import java.util.List;
 
 @Stateless
+@Interceptors(LoggerInterceptor.class)
 public class MessageConverter {
 
     public List<ru.iflex.burov.facade.Message> convertManagerMessagesToFacadeMessages(List<ru.iflex.burov.messsage.Message> messagesIn) {

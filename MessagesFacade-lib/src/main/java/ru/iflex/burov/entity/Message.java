@@ -1,10 +1,13 @@
 package ru.iflex.burov.entity;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import ru.iflex.burov.interceptors.LoggerInterceptor;
 
+import javax.interceptor.Interceptors;
 import java.util.Calendar;
 
 @JsonAutoDetect
+@Interceptors(LoggerInterceptor.class)
 public class Message {
     private int id;
     private String sender;

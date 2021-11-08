@@ -3,11 +3,13 @@ package ru.iflex.burov.rcp.client;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.iflex.burov.config.MessagesFacadeConfigHelper;
 import ru.iflex.burov.entity.Message;
+import ru.iflex.burov.interceptors.LoggerInterceptor;
 import ru.iflex.burov.lib.MessagesFacadeRCPClient;
 import ru.iflex.burov.rcp.RPCRequest;
 import ru.iflex.burov.rcp.RPCResponse;
 
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Stateless
+@Interceptors(LoggerInterceptor.class)
 public class MessagesFacadeRPCClientImpl implements MessagesFacadeRCPClient {
     private int connectTimeOut = MessagesFacadeConfigHelper.getInstance().getConfigurations().getMessageManagerRCPService().getConnectTimeOut();
     private int readTimeOut = MessagesFacadeConfigHelper.getInstance().getConfigurations().getMessageManagerRCPService().getReadTimeOut();

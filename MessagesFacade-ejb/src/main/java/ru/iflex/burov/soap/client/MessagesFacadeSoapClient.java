@@ -1,6 +1,7 @@
 package ru.iflex.burov.soap.client;
 
 import ru.iflex.burov.config.MessagesFacadeConfigHelper;
+import ru.iflex.burov.interceptors.LoggerInterceptor;
 import ru.iflex.burov.messsage.GetMessageByDateRequest;
 import ru.iflex.burov.messsage.GetMessageBySenderRequest;
 import ru.iflex.burov.messsage.GetMessageResponse;
@@ -8,10 +9,12 @@ import ru.iflex.burov.messsage.ws.MessageManagerPortType;
 import ru.iflex.burov.messsage.ws.MessageManagerService;
 
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.BindingProvider;
 
 @Stateless
+@Interceptors(LoggerInterceptor.class)
 public class MessagesFacadeSoapClient {
     private int connectTimeOut = MessagesFacadeConfigHelper.getInstance().getConfigurations().getMessageManagerSoapService().getConnectTimeOut();
     private int readTimeOut = MessagesFacadeConfigHelper.getInstance().getConfigurations().getMessageManagerSoapService().getReadTimeOut();
