@@ -2,6 +2,7 @@ package ru.iflex.burov.beans;
 
 import ru.iflex.burov.converter.MessageConverter;
 import ru.iflex.burov.entity.Message;
+import ru.iflex.burov.feign.client.MessagesFacadeFeignClientImpl;
 import ru.iflex.burov.interceptors.LoggerInterceptor;
 import ru.iflex.burov.lib.*;
 import ru.iflex.burov.soap.client.MessagesFacadeSoapClient;

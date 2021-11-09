@@ -21,7 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-
 @Stateless
 @Interceptors(LoggerInterceptor.class)
 public class MessagesFacadeRestClientImpl implements MessagesFacadeRestClient {
