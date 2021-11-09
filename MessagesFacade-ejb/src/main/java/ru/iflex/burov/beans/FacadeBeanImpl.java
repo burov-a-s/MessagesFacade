@@ -3,9 +3,7 @@ package ru.iflex.burov.beans;
 import ru.iflex.burov.converter.MessageConverter;
 import ru.iflex.burov.entity.Message;
 import ru.iflex.burov.interceptors.LoggerInterceptor;
-import ru.iflex.burov.lib.FacadeBean;
-import ru.iflex.burov.lib.MessagesFacadeRCPClient;
-import ru.iflex.burov.lib.MessagesFacadeRestClient;
+import ru.iflex.burov.lib.*;
 import ru.iflex.burov.soap.client.MessagesFacadeSoapClient;
 
 import javax.ejb.EJB;
@@ -32,12 +30,14 @@ public class FacadeBeanImpl implements FacadeBean {
 
     @Override
     public void addMessage(Message message) {
-        messagesFacadeRestClient.addMessage(message);
+//        messagesFacadeRestClient.addMessage(message);
+        MessagesFacadeFeignClientImpl.getInstance().addMessage(message);
     }
 
     @Override
     public void removeMessage(int id) {
-        messagesFacadeRestClient.removeMessage(id);
+//        messagesFacadeRestClient.removeMessage(id);
+        MessagesFacadeFeignClientImpl.getInstance().removeMessage(id);
     }
 
     @Override
@@ -55,6 +55,7 @@ public class FacadeBeanImpl implements FacadeBean {
     @Override
     public List<Message> getAllMessages() {
 //        return messagesFacadeRestClient.getAllMessages();
-        return messagesFacadeRCPClient.getAllMessages();
+//        return messagesFacadeRCPClient.getAllMessages();
+        return MessagesFacadeFeignClientImpl.getInstance().getAllMessages();
     }
 }
